@@ -19,7 +19,6 @@ async function withdraw (interaction) {
   const toAddress = interaction.options.getString('address')
 
   if (!toAddress) {
-    console.log(toAddress)
     interaction.reply(NEED_ADDRESS_TEXT)
     return
   }
@@ -29,6 +28,7 @@ async function withdraw (interaction) {
   try {
     const balance = await getBalance(fromAccount)
       console.log(fromAccount)
+      console.log(toAddress)
     // We don't have funds...
     if (balance === 0) {
       interaction.reply(NO_FUNDS)
@@ -41,7 +41,6 @@ async function withdraw (interaction) {
     }
 
     await sendFrom(toAddress, amount)
-    console.log(toAddress)
     interaction.reply(WITHDRAW_TEXT)
   } catch (err) {
     console.log(err)
