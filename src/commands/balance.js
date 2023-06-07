@@ -8,6 +8,7 @@ function balance (interaction) {
 
   getBalance(account)
     .then(function (balance) {
+      console.log(balance)
       interaction.reply(BALANCE_TEXT + (balance).toFixed(2) + ' ROD')
     })
     .catch(function (err) {

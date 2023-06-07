@@ -10,6 +10,7 @@ async function tip (interaction) {
   const to = interaction.options.getUser('to')
 
   if (!to) {
+    console.log(to)
     interaction.reply(NEED_USER_TEXT)
     return
   }
@@ -17,6 +18,7 @@ async function tip (interaction) {
   const amount = interaction.options.getInteger('amount')
 
   if (!amount) {
+    console.log(amount)
     interaction.reply(PROPER_AMOUNT_TEXT)
     return
   }
@@ -26,7 +28,8 @@ async function tip (interaction) {
 
   try {
     const balance = await getBalance(fromAccount)
-
+      console.log(fromAccount)
+      console.log(toAccount)
     // We don't have enough funds...
     if (balance - amount <= 0) {
       interaction.reply(NOT_ENOUGH_FUNDS)
