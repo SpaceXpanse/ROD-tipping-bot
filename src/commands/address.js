@@ -10,7 +10,7 @@ function address (interaction) {
   // Yes
   getAccountAddress(account)
     .then(function (address) {
-      console.log(address)
+      console.log(address[0])
       interaction.reply(ADDRESS_TEXT + address[0])
     })
     .catch(function (err) {
