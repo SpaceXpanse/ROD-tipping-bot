@@ -25,7 +25,7 @@ function getBalance (account) {
   return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
-    method: 'getBalance',
+    method: 'getbalance',
     //params: [account]
   }, {
     headers: {
