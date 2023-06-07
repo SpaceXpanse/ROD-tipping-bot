@@ -24,7 +24,7 @@ async function tip (interaction) {
   }
 
   const fromAccount = interaction.user.id
-  const toAccount = to.id
+  const toAccount = to.id //ToDo: convert to address
 
   try {
     const balance = await getBalance(fromAccount)
