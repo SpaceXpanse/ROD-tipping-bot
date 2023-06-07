@@ -1,11 +1,11 @@
 const axios = require('axios')
 const settings = require('./settings')
 
-const DOGE_NODE_URL = `http://${settings.RPC_HOST}:${settings.RPC_PORT}`
-const BASIC_AUTH_DOGE_TOKEN = Buffer.from(`${settings.RPC_USER}:${settings.RPC_PASSWORD}`).toString('base64')
+const ROD_NODE_URL = `http://${settings.RPC_HOST}:${settings.RPC_PORT}`
+const BASIC_AUTH_ROD_TOKEN = Buffer.from(`${settings.RPC_USER}:${settings.RPC_PASSWORD}`).toString('base64')
 
 function getAccountAddress (account) {
-  return axios.post(DOGE_NODE_URL, {
+  return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
     method: 'getaccountaddress',
@@ -13,7 +13,7 @@ function getAccountAddress (account) {
   }, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Basic ${BASIC_AUTH_DOGE_TOKEN}`
+      Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
     }
   })
     .then(function (result) {
@@ -22,7 +22,7 @@ function getAccountAddress (account) {
 }
 
 function getBalance (account) {
-  return axios.post(DOGE_NODE_URL, {
+  return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
     method: 'getbalance',
@@ -30,7 +30,7 @@ function getBalance (account) {
   }, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Basic ${BASIC_AUTH_DOGE_TOKEN}`
+      Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
     }
   })
     .then(function (result) {
@@ -39,7 +39,7 @@ function getBalance (account) {
 }
 
 function move (fromAccount, toAccount, amount) {
-  return axios.post(DOGE_NODE_URL, {
+  return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
     method: 'move',
@@ -47,7 +47,7 @@ function move (fromAccount, toAccount, amount) {
   }, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Basic ${BASIC_AUTH_DOGE_TOKEN}`
+      Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
     }
   })
     .then(function (result) {
@@ -56,7 +56,7 @@ function move (fromAccount, toAccount, amount) {
 }
 
 function sendFrom (fromAccount, toAddress, amount) {
-  return axios.post(DOGE_NODE_URL, {
+  return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
     method: 'sendfrom',
@@ -64,7 +64,7 @@ function sendFrom (fromAccount, toAddress, amount) {
   }, {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Basic ${BASIC_AUTH_DOGE_TOKEN}`
+      Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
     }
   })
     .then(function (result) {

@@ -48,7 +48,7 @@ async function main () {
         Commands.balance(interaction)
         break
       case 'rate':
-        interaction.reply('1 DOGE = 1 DOGE')
+        interaction.reply('1 ROD = 1 ROD')
         break
       case 'address':
         Commands.address(interaction)

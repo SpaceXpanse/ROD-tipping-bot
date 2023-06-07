@@ -1,0 +1,21 @@
+module.exports = {
+  apps: [
+    {
+      name: 'ROD-Tiping-Bot',
+      script: './src/main.js',
+      cwd: '/root/rod-tipping-bot',
+      instance_id_env: '0',
+      watch: true,
+      ignore_watch : ['node_modules', 'Logs', 'Downloads', '.git'],
+      error_file:
+        '/root/rod-tipping-bot/Logs/tipbot-err.log',
+      out_file: '/root/rod-tipping-bot/Logs/tipbot-out.log',
+      env: {
+        NODE_ENV: 'development'
+      },
+      env_production: {
+        NODE_ENV: 'production'
+      }
+    }
+  ]
+};

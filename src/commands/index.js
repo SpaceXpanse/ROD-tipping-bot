@@ -11,7 +11,7 @@ const { SlashCommandBuilder } = require('discord.js')
 
 const commands = new SlashCommandBuilder()
   .setName('wow')
-  .setDescription('Dogecoin bot prefix command')
+  .setDescription('ROD bot prefix command')
   .addSubcommand(subcommand =>
     subcommand
       .setName('help')
@@ -19,10 +19,10 @@ const commands = new SlashCommandBuilder()
   .addSubcommand(subcommand =>
     subcommand
       .setName('tip')
-      .setDescription('Tip someone some dogecoins')
+      .setDescription('Tip someone some RODs')
       .addIntegerOption(option =>
         option.setName('amount')
-          .setDescription('Amount of Dogecoin to tip')
+          .setDescription('Amount of RODs to tip')
           .setRequired(true))
       .addUserOption(option =>
         option.setName('to')
@@ -39,23 +39,23 @@ const commands = new SlashCommandBuilder()
   .addSubcommand(subcommand =>
     subcommand
       .setName('address')
-      .setDescription('Show an address so you can refill your wallet with some dogecoins'))
+      .setDescription('Show an address so you can refill your wallet with some RODs'))
   .addSubcommand(subcommand =>
     subcommand
       .setName('withdraw')
       .setDescription('Move your coins to an external address')
       .addIntegerOption(option =>
         option.setName('amount')
-          .setDescription('Amount of Dogecoin to move')
+          .setDescription('Amount of ROD to move')
           .setRequired(true))
       .addStringOption(option =>
         option.setName('address')
-          .setDescription('The Dogecoin address to send the dogecoins to')
+          .setDescription('The Dogecoin address to send the RODs to')
           .setRequired(true)))
   .addSubcommand(subcommand =>
     subcommand
       .setName('goodboy')
-      .setDescription('Wow, much doggo, such reward, wow'))
+      .setDescription('Wow, such reward, wow'))
   .addSubcommand(subcommand =>
     subcommand
       .setName('qrcode')
@@ -63,10 +63,10 @@ const commands = new SlashCommandBuilder()
   .addSubcommand(subcommand =>
     subcommand
       .setName('voucher')
-      .setDescription('Get your dogecoins from your voucher card !! (Only work in private message with the bot)')
+      .setDescription('Get your RODs from your voucher card !! (Only work in private message with the bot)')
       .addStringOption(option =>
         option.setName('voucher')
-          .setDescription('The voucher code to retrieve dogecoins')
+          .setDescription('The voucher code to retrieve RODs')
           .setRequired(true)))
 
 module.exports = { commands, help, tip, balance, address, withdraw, goodboy, qrcode, voucher }

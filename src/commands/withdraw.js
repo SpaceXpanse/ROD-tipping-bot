@@ -1,11 +1,11 @@
 const { OOPS_TEXT } = require('../messages')
-const { sendFrom, getBalance } = require('../dogeApi')
+const { sendFrom, getBalance } = require('../rodApi')
 
 const WITHDRAW_TEXT = 'Wow. Successful withdrawal.'
 const PROPER_AMOUNT_TEXT = 'You need provide a proper amount to be send.'
 const NEED_ADDRESS_TEXT = 'Need an address as a third argument'
-const NO_FUNDS = 'You dont have doge to transfer.'
-const NOT_ENOUGH_FUNDS = 'Not enough funds for this transfer. Please add some dogecoins.'
+const NO_FUNDS = 'You dont have ROD to transfer.'
+const NOT_ENOUGH_FUNDS = 'Not enough funds for this transfer. Please add some RODs.'
 
 async function withdraw (interaction) {
   const amount = interaction.options.getInteger('amount')

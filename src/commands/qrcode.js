@@ -1,5 +1,5 @@
 const { OOPS_TEXT, QRCODE_TEXT } = require('../messages')
-const { getAccountAddress } = require('../dogeApi')
+const { getAccountAddress } = require('../rodApi')
 const { EmbedBuilder } = require('discord.js')
 
 function qrcode (interaction) {

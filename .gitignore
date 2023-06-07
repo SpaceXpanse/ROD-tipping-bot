@@ -4,3 +4,4 @@ config.json
 secret.txt
 vouchers.json
 vouchers-old.json
+*.~*

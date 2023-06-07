@@ -1,10 +1,10 @@
 const { OOPS_TEXT } = require('../messages')
-const { getBalance, move } = require('../dogeApi')
+const { getBalance, move } = require('../rodApi')
 
 const TIP_TEXT = 'Wow. Much coins.'
 const PROPER_AMOUNT_TEXT = 'You need provide a proper amount to be send.'
 const NEED_USER_TEXT = 'Need a user as a third argument'
-const NOT_ENOUGH_FUNDS = 'Not enough funds for this transfer. Please add some dogecoins.'
+const NOT_ENOUGH_FUNDS = 'Not enough funds for this transfer. Please add some RODs.'
 
 async function tip (interaction) {
   const to = interaction.options.getUser('to')

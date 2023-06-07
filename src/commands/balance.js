@@ -1,5 +1,5 @@
 const { OOPS_TEXT } = require('../messages')
-const { getBalance } = require('../dogeApi')
+const { getBalance } = require('../rodApi')
 
 const BALANCE_TEXT = 'Wow. Balance : '
 
@@ -8,7 +8,7 @@ function balance (interaction) {
 
   getBalance(account)
     .then(function (balance) {
-      interaction.reply(BALANCE_TEXT + (balance).toFixed(2) + ' DOGE')
+      interaction.reply(BALANCE_TEXT + (balance).toFixed(2) + ' ROD')
     })
     .catch(function (err) {
       console.log(err)

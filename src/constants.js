@@ -1,3 +1,3 @@
 module.exports = {
-  DOGE_SATOSHI: 100000000
+  ROD_SATOSHI: 100000000
 }

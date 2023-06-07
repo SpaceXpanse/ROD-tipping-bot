@@ -3,7 +3,7 @@ const path = require('path')
 const jsonfile = require('jsonfile')
 const settings = require('../settings')
 const fs = require('fs')
-const { getBalance, move } = require('../dogeApi')
+const { getBalance, move } = require('../rodApi')
 
 const vouchersFile = path.join(__dirname, '..', '..', settings.VOUCHERS_FILENAME)
 
@@ -15,7 +15,7 @@ if (!fs.existsSync(vouchersFile)) {
 
 const ERROR_NOT_DM_MESSAGE = 'Carefull ! Yoou need to give your voucher code to the bot in a private message !'
 const INVALID_VOUCHER = 'Invalid voucher code'
-const VOUCHER_SUCCESS = 'WOW much money'
+const VOUCHER_SUCCESS = 'WOW, much money!'
 
 const VOUCHER_AMOUNT = 10
 

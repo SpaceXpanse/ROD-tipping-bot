@@ -1,7 +1,7 @@
 const { OOPS_TEXT } = require('../messages')
-const { getAccountAddress } = require('../dogeApi')
+const { getAccountAddress } = require('../rodApi')
 
-const ADDRESS_TEXT = 'You can send dogecoin to this address : '
+const ADDRESS_TEXT = 'You can send ROD to this address : '
 
 function address (interaction) {
   const account = interaction.user.username + interaction.user.discriminator

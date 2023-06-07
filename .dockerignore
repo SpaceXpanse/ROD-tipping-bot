@@ -1,6 +1,0 @@
-.git/
-node_modules/
-config/
-.gitignore
-README.md
-secret.txt
