@@ -10,8 +10,8 @@ function address (interaction) {
   // Yes
   getAccountAddress(account)
     .then(function (address) {
-      console.log(address[0])
-      interaction.reply(ADDRESS_TEXT + address[0])
+      console.log(address)
+      interaction.reply(ADDRESS_TEXT + address)
     })
     .catch(function (err) {
       console.log(err)

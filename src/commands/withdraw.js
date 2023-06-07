@@ -41,6 +41,7 @@ async function withdraw (interaction) {
     }
 
     await sendFrom(toAddress, amount)
+    console.log(toAddress)
     interaction.reply(WITHDRAW_TEXT)
   } catch (err) {
     console.log(err)

@@ -9,7 +9,7 @@ function balance (interaction) {
   getBalance(account)
     .then(function (balance) {
       console.log(balance)
-      interaction.reply(BALANCE_TEXT + (balance[6]).toFixed(2) + ' ROD')
+      interaction.reply(BALANCE_TEXT + (balance).toFixed(2) + ' ROD')
     })
     .catch(function (err) {
       console.log(err)

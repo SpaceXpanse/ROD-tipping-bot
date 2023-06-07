@@ -24,7 +24,7 @@ async function tip (interaction) {
   }
 
   const fromAccount = interaction.user.id
-  const toAccount = to.used.id
+  const toAccount = to.user.id
 
   try {
     const balance = await getBalance(fromAccount)
