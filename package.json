@@ -27,7 +27,9 @@
   },
   "scripts": {
     "rebuild": "git pull origin master && npm install && update all",
-    "start":  "pm2 start ecosystem.config.js"
+    "start":  "pm2 start ecosystem.config.js",
+    "stop":  "pm2 stop ecosystem.config.js",
+    "restart":  "pm2 restart ecosystem.config.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.12",
