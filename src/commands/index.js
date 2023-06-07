@@ -10,7 +10,7 @@ const voucher = require('./voucher')
 const { SlashCommandBuilder } = require('discord.js')
 
 const commands = new SlashCommandBuilder()
-  .setName('wow')
+  .setName('rod')
   .setDescription('ROD bot prefix command')
   .addSubcommand(subcommand =>
     subcommand
