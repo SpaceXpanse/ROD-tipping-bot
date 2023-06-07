@@ -8,7 +8,7 @@ function getAccountAddress (account) {
   return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
-    method: 'getaccountaddress',
+    method: 'getaddressesbylabel',
     params: [account]
   }, {
     headers: {
