@@ -4,7 +4,7 @@ const { getAccountAddress } = require('../rodApi')
 const ADDRESS_TEXT = 'You can send ROD to this address : '
 
 function address (interaction) {
-  const account = interaction.user.username + interaction.user.discriminator
+  const account = interaction.user.id
 
   // Will create a new account if doesn't exist... ? Should we allow this ?
   // Yes

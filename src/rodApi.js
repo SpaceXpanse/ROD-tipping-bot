@@ -38,12 +38,12 @@ function getBalance (account) {
     })
 }
 
-function move (fromAccount, toAccount, amount) {
+function move (toAccount, amount) {
   return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
-    method: 'move',
-    params: [fromAccount, toAccount, amount]
+    method: 'sendtoaddress',
+    params: [toAccount, amount]
   }, {
     headers: {
       'Content-Type': 'application/json',
@@ -55,12 +55,12 @@ function move (fromAccount, toAccount, amount) {
     })
 }
 
-function sendFrom (fromAccount, toAddress, amount) {
+function sendFrom (toAddress, amount) {
   return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
-    method: 'sendfrom',
-    params: [fromAccount, toAddress, amount]
+    method: 'sendtoaddress',
+    params: [toAddress, amount]
   }, {
     headers: {
       'Content-Type': 'application/json',

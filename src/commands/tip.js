@@ -23,8 +23,8 @@ async function tip (interaction) {
     return
   }
 
-  const fromAccount = interaction.user.username + interaction.user.discriminator
-  const toAccount = to.username + to.discriminator
+  const fromAccount = interaction.user.id
+  const toAccount = to.used.id
 
   try {
     const balance = await getBalance(fromAccount)
@@ -36,7 +36,7 @@ async function tip (interaction) {
       return
     }
 
-    await move(fromAccount, toAccount, amount)
+    await move(toAccount, amount)
     interaction.reply(TIP_TEXT)
   } catch (err) {
     console.log(err)

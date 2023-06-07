@@ -4,7 +4,7 @@ const { EmbedBuilder } = require('discord.js')
 
 function qrcode (interaction) {
   // Transform account to recover address
-  const account = interaction.user.username + interaction.user.discriminator
+  const account = interaction.user.id
 
   // Call dogecoin node to have the public address
   getAccountAddress(account)

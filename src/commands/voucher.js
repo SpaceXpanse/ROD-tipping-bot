@@ -9,18 +9,18 @@ const vouchersFile = path.join(__dirname, '..', '..', settings.VOUCHERS_FILENAME
 
 // TODO: We could deactivate the vouchers instead of this
 if (!fs.existsSync(vouchersFile)) {
-  console.error('NO VOUCHERS FILE !!!')
+  console.error('NO VOUCHERS FILE!!!')
   process.exit()
 }
 
-const ERROR_NOT_DM_MESSAGE = 'Carefull ! Yoou need to give your voucher code to the bot in a private message !'
+const ERROR_NOT_DM_MESSAGE = 'Carefull! Yoou need to give your voucher code to the bot in a private message!'
 const INVALID_VOUCHER = 'Invalid voucher code'
-const VOUCHER_SUCCESS = 'WOW, much money!'
+const VOUCHER_SUCCESS = 'WOW, money!'
 
 const VOUCHER_AMOUNT = 10
 
 async function voucher (interaction) {
-  const account = interaction.user.username + interaction.user.discriminator
+  const account = interaction.user.id
   const voucherCode = interaction.options.getString('voucher')
 
   // hacky

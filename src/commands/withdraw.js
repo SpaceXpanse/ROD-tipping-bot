@@ -24,7 +24,7 @@ async function withdraw (interaction) {
     return
   }
 
-  const fromAccount = interaction.user.username + interaction.user.discriminator
+  const fromAccount = interaction.user.id
 
   try {
     const balance = await getBalance(fromAccount)
@@ -40,7 +40,7 @@ async function withdraw (interaction) {
       return
     }
 
-    await sendFrom(fromAccount, toAddress, amount)
+    await sendFrom(toAddress, amount)
     interaction.reply(WITHDRAW_TEXT)
   } catch (err) {
     console.log(err)
