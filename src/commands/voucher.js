@@ -48,6 +48,7 @@ async function voucher (interaction) {
 
         jsonfile.writeFileSync(vouchersFile, data)
 
+        console.log(validVoucher)
         interaction.reply(VOUCHER_SUCCESS)
         return
       } catch (err) {

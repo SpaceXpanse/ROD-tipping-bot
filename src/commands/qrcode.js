@@ -20,6 +20,7 @@ function qrcode (interaction) {
         .setImage(qrcodeurl)
 
       // Display message
+      console.log(address)
       interaction.reply({ embeds: [embed] })
     })
     .catch(function (err) {
