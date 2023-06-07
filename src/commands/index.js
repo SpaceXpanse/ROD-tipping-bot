@@ -11,7 +11,7 @@ const { SlashCommandBuilder } = require('discord.js')
 
 const commands = new SlashCommandBuilder()
   .setName('rod')
-  .setDescription('ROD bot prefix command')
+  .setDescription('ROD tipping bot prefix command')
   .addSubcommand(subcommand =>
     subcommand
       .setName('help')
@@ -46,16 +46,16 @@ const commands = new SlashCommandBuilder()
       .setDescription('Move your coins to an external address')
       .addIntegerOption(option =>
         option.setName('amount')
-          .setDescription('Amount of ROD to move')
+          .setDescription('Amount of ROD to send')
           .setRequired(true))
       .addStringOption(option =>
         option.setName('address')
-          .setDescription('The Dogecoin address to send the RODs to')
+          .setDescription('The address to send the RODs to')
           .setRequired(true)))
   .addSubcommand(subcommand =>
     subcommand
       .setName('goodboy')
-      .setDescription('Wow, such reward, wow'))
+      .setDescription('Wow, such reward.'))
   .addSubcommand(subcommand =>
     subcommand
       .setName('qrcode')
@@ -63,7 +63,7 @@ const commands = new SlashCommandBuilder()
   .addSubcommand(subcommand =>
     subcommand
       .setName('voucher')
-      .setDescription('Get your RODs from your voucher card !! (Only work in private message with the bot)')
+      .setDescription('Get RODs from your voucher! (Only work in private message with the bot)')
       .addStringOption(option =>
         option.setName('voucher')
           .setDescription('The voucher code to retrieve RODs')
