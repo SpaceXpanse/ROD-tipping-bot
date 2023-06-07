@@ -11,7 +11,7 @@ function address (interaction) {
   getAccountAddress(account)
     .then(function (address) {
       console.log(address)
-      interaction.reply(ADDRESS_TEXT + address)
+      interaction.reply(ADDRESS_TEXT + address[0])
     })
     .catch(function (err) {
       console.log(err)
