@@ -17,8 +17,8 @@ function getAccountAddress(account) {
         Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`,
       },
     })
-    .then(function(result) {
-      const addresses = result.data.result;
+    .then(function(getAddressesbylabelResult) {
+      const addresses = getAddressesbylabelResult.data.result;
       console.log(addresses)
 
       if (addresses !== null && Object.keys(addresses)[0].length > 0) {
