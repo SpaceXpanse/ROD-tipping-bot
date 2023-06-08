@@ -16,8 +16,8 @@ function getAccountAddress (account) {
       Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
     }
   })
-    .then(function (result) {
-      console.log(result.data.result)
+    .then(function (getAddressesbylabelResult) {
+      console.log(getAddressesbylabelResult.data.result)    
       return result.data.result
     })
 }
