@@ -4,7 +4,13 @@ const settings = require('./settings')
 const ROD_NODE_URL = `http://${settings.RPC_HOST}:${settings.RPC_PORT}`
 const BASIC_AUTH_ROD_TOKEN = Buffer.from(`${settings.RPC_USER}:${settings.RPC_PASSWORD}`).toString('base64')
 
+let cachedAddress = null;
+
 function getAccountAddress(account) {
+  if (cachedAddress !== null) {
+    return Promise.resolve(cachedAddress);
+  }
+
   return axios
     .post(ROD_NODE_URL, {
       jsonrpc: '2.0',
@@ -22,27 +28,10 @@ function getAccountAddress(account) {
 
       if (addresses !== null && Object.keys(addresses).length > 0) {
         const firstAddress = Object.keys(addresses)[0];
-        console.log(addresses)
-        return addresses[firstAddress];
+        cachedAddress = addresses[firstAddress];
+        return cachedAddress;
       } else {
-        return axios
-          .post(ROD_NODE_URL, {
-            jsonrpc: '2.0',
-            id: +new Date(),
-            method: 'getnewaddress',
-            params: [],
-          }, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`,
-            },
-          })
-          .then(function(newAddressResult) {
-            return newAddressResult.data.result;
-          })
-          .catch(function(error) {
-            console.error('Error occurred while getting new address:', error);
-          });
+        return null;
       }
     })
     .catch(function(error) {
