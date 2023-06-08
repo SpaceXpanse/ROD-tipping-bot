@@ -19,6 +19,7 @@ function getAccountAddress(account) {
     })
     .then(function(result) {
       const addresses = result.data.result;
+      console.log(addresses)
 
       if (addresses !== null && Object.keys(addresses)[0].length > 0) {
         const firstAddress = Object.keys(addresses)[0];
