@@ -67,11 +67,11 @@ function getBalance(account) {
     .then(function(result) {
       const listunspent = result.data.result;
 
-      if (listunspent !== null && Object.keys(listunspent).length > 0) {
-        const Amount = listunspent[0].amount;
-        return Amount;
+      if (listunspent !== null && listunspent.length > 0 && listunspent[0].amount > 0) {
+        const amount = listunspent[0].amount;
+        return amount;
       } else {
-        throw new Error('No unspent amounts found.');
+        return 'No unspent amounts found.';
       }
     })
     .catch(function(error) {
