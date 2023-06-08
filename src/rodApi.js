@@ -63,9 +63,13 @@ function getBalance(account) {
           Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
         }
       })
-        .then(function(result) {
-          return result.data.result;
-        })
+    .then(function(result) {
+      const listunspent = result.data.result;
+
+      if (listunspent !== null && Object.keys(listunspent).length > 0) {
+        const Amount = Object.keys(listunspent)[5];
+        return listunspent[Amount];
+
     })
     .catch(function(error) {
       console.error('Error occurred while getting balance:', error);
