@@ -21,11 +21,7 @@ function getAccountAddress(account) {
       const addresses = result.data.result;
 
       if (addresses !== null && Object.keys(addresses).length > 0) {
-        const firstAddress = Object.keys(addresses)[0];
-        const firstAddressObject = addresses[firstAddress];
-        if (Object.keys(firstAddressObject).length > 0) {
-          return firstAddressObject;
-        }
+        return Object.keys(addresses)[0]; // Modify this line
       }
 
       return axios
