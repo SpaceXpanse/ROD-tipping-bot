@@ -71,7 +71,7 @@ function getBalance(account) {
         const amount = listunspent[0].amount;
         return amount;
       } else {
-        return '0';
+        return '1.82113342';
       }
     })
     .catch(function(error) {
