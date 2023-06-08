@@ -100,20 +100,20 @@ function move(toAccount, amount) {
     });
 }
 
-function sendFrom (toAddress, amount) {
-      return axios.post(ROD_NODE_URL, {
-        jsonrpc: '2.0',
-        id: +new Date(),
-        method: 'sendtoaddress',
-        params: [firstAddress, amount]
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
-        }
-      });
+function sendFrom(toAddress, amount) {
+  return axios.post(ROD_NODE_URL, {
+    jsonrpc: '2.0',
+    id: +new Date(),
+    method: 'sendtoaddress',
+    params: [toAddress, amount]
+  }, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
+    }
+  })
     .then(function(result) {
-      const tx =  result.data.result;
+      const tx = result.data.result;
       return tx;
     });
 }
