@@ -106,7 +106,7 @@ function sendFrom(fromAccount, toAddress, amount) {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'sendtoaddress',
-        params: [toAddress, amount, 'changeaddress:' firstAddress]
+        params: [toAddress, amount, 'changeaddress:' [firstAddress]]
       }, {
         headers: {
           'Content-Type': 'application/json',
