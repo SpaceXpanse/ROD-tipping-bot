@@ -79,38 +79,44 @@ function getBalance(account) {
     });
 }
 
-function move (toAccount, amount) {
-  return axios.post(ROD_NODE_URL, {
-    jsonrpc: '2.0',
-    id: +new Date(),
-    method: 'sendtoaddress',
-    params: [toAccount, amount]
-  }, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
-    }
-  })
-    .then(function (result) {
-      return result.data.result
+function move(toAccount, amount) {
+  return getAccountAddress(toAccount)
+    .then(function(firstAddress) {
+      return axios.post(ROD_NODE_URL, {
+        jsonrpc: '2.0',
+        id: +new Date(),
+        method: 'sendtoaddress',
+        params: [firstAddress, amount]
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
+        }
+      });
     })
+    .then(function(result) {
+      return result.data.result;
+    });
 }
 
 function sendFrom (toAddress, amount) {
-  return axios.post(ROD_NODE_URL, {
-    jsonrpc: '2.0',
-    id: +new Date(),
-    method: 'sendtoaddress',
-    params: [toAddress, amount]
-  }, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
-    }
-  })
-    .then(function (result) {
-      return result.data.result
+  return getAccountAddress(toAccount)
+    .then(function(firstAddress) {
+      return axios.post(ROD_NODE_URL, {
+        jsonrpc: '2.0',
+        id: +new Date(),
+        method: 'sendtoaddress',
+        params: [firstAddress, amount]
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
+        }
+      });
     })
+    .then(function(result) {
+      return result.data.result;
+    });
 }
 
 module.exports = {
