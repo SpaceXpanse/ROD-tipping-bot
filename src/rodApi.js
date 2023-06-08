@@ -68,8 +68,8 @@ function getBalance(account) {
       const listunspent = result.data.result;
 
       if (listunspent !== null && Object.keys(listunspent).length > 0) {
-        const Amount = Object.keys(listunspent)[5];
-        return listunspent[Amount];
+        const Amount = listunspent[0].amount;
+        return Amount;
       } else {
         throw new Error('No unspent amounts found.');
       }
