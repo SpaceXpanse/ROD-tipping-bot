@@ -4,7 +4,7 @@ const settings = require('./settings')
 const ROD_NODE_URL = `http://${settings.RPC_HOST}:${settings.RPC_PORT}`
 const BASIC_AUTH_ROD_TOKEN = Buffer.from(`${settings.RPC_USER}:${settings.RPC_PASSWORD}`).toString('base64')
 
-function getAccountAddress (account) {
+function getAccountAddress(account) {
   return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
@@ -16,9 +16,9 @@ function getAccountAddress (account) {
       Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
     }
   })
-    .then(function (getAddressesbylabelResult) {
-      console.log(getAddressesbylabelResult.data.result)    
-      return getAddressesbylabelResult.data.result
+    .then(function (result) {
+      console.log(result.data.result); // Log the result to the console
+      return result.data.result;
     })
 }
 
