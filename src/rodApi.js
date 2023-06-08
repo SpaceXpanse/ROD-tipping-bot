@@ -100,7 +100,7 @@ function move(fromAccount, toAccount, amount) {
     });
 }
 
-function sendFrom(toAddress, amount) {
+function sendFrom(toAddress, amount) {  //not used. same as move()
   return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),

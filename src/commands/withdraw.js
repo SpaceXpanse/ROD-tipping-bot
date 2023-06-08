@@ -1,7 +1,7 @@
 const { OOPS_TEXT } = require('../messages')
 const { sendFrom, getBalance } = require('../rodApi')
 
-const WITHDRAW_TEXT = 'Wow. Successful withdrawal.'
+const WITHDRAW_TEXT = 'Successful withdrawal. Check it at http://explorer1.rod.spacexpanse.org:3001/tx/'
 const PROPER_AMOUNT_TEXT = 'You need provide a proper amount to be send.'
 const NEED_ADDRESS_TEXT = 'Need an address as a third argument'
 const NO_FUNDS = 'You dont have ROD to transfer.'
@@ -40,8 +40,9 @@ async function withdraw (interaction) {
       return
     }
 
-    await sendFrom(toAddress, amount)
-    interaction.reply(WITHDRAW_TEXT)
+    await move(fromAccount, toAddress, amount)
+    console.log(fromAccount, toAccount, amount, tx)
+    interaction.reply(WITHDRAW_TEXT + tx)
   } catch (err) {
     console.log(err)
     interaction.reply(OOPS_TEXT)
