@@ -116,7 +116,8 @@ function sendFrom(fromAccount, toAddress, amount) {
       });
     })
     .then(function(result) {
-      return result.data.result;
+      const tx = result.data.result;
+      return tx;
     });
 }
 
