@@ -82,6 +82,8 @@ function getBalance(account) {
 function move(fromAccount, toAccount, amount) {
   return Promise.all([getAccountAddress(fromAccount), getAccountAddress(toAccount)])
     .then(function([fromAddress, toAddress]) {
+      console.log(fromAddress)
+      console.log(toAddress)
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
@@ -102,6 +104,7 @@ function move(fromAccount, toAccount, amount) {
 function sendFrom(fromAccount, toAddress, amount) {
   return getAccountAddress(fromAccount)
     .then(function(firstAddress) {
+      console.log(firstAddress)
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
