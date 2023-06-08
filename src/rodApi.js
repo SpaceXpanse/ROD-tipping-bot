@@ -19,9 +19,11 @@ function getAccountAddress(account) {
     })
     .then(function(result) {
       const addresses = result.data.result;
-      
-      if (addresses === null) {
-        // If the result is null, perform a new POST request with "getnewaddress" method
+
+      if (addresses !== null && Object.keys(addresses).length > 0) {
+        const firstAddress = Object.keys(addresses)[0];
+        return addresses[firstAddress];
+      } else {
         return axios
           .post(ROD_NODE_URL, {
             jsonrpc: '2.0',
@@ -40,10 +42,6 @@ function getAccountAddress(account) {
           .catch(function(error) {
             console.error('Error occurred while getting new address:', error);
           });
-      } else {
-        // If the result is not null, return the first address object
-        const firstAddress = Object.keys(addresses)[0];
-        return addresses[firstAddress];
       }
     })
     .catch(function(error) {
