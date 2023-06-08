@@ -4,50 +4,22 @@ const settings = require('./settings')
 const ROD_NODE_URL = `http://${settings.RPC_HOST}:${settings.RPC_PORT}`
 const BASIC_AUTH_ROD_TOKEN = Buffer.from(`${settings.RPC_USER}:${settings.RPC_PASSWORD}`).toString('base64')
 
-function getAccountAddress(account) {
-  return axios
-    .post(ROD_NODE_URL, {
-      jsonrpc: '2.0',
-      id: +new Date(),
-      method: 'getaddressesbylabel',
-      params: [account],
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`,
-      },
+function getAccountAddress (account) {
+  return axios.post(ROD_NODE_URL, {
+    jsonrpc: '2.0',
+    id: +new Date(),
+    method: 'getaddressesbylabel',
+    params: [account]
+  }, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
+    }
+  })
+    .then(function (result) {
+      console.log(result.data.result)
+      return result.data.result
     })
-    .then(function(getAddressesbylabelResult) {
-      const addresses = getAddressesbylabelResult.data.result;
-      console.log(addresses)
-
-      if (addresses !== null && Object.keys(addresses)[0].length > 0) {
-        const firstAddress = Object.keys(addresses)[0];
-        return addresses[firstAddress];
-      } else {
-        return axios
-          .post(ROD_NODE_URL, {
-            jsonrpc: '2.0',
-            id: +new Date(),
-            method: 'getnewaddress',
-            params: [],
-          }, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`,
-            },
-          })
-          .then(function(newAddressResult) {
-            return newAddressResult.data.result;
-          })
-          .catch(function(error) {
-            console.error('Error occurred while getting new address:', error);
-          });
-      }
-    })
-    .catch(function(error) {
-      console.error('Error occurred while getting account address:', error);
-    });
 }
 
 function getBalance (account) {
