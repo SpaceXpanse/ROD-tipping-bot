@@ -79,14 +79,14 @@ function getBalance(account) {
     });
 }
 
-function move(toAccount, amount) {
-  return getAccountAddress(toAccount)
-    .then(function(firstAddress) {
+function move(fromAccount, toAccount, amount) {
+  return Promise.all([getAccountAddress(fromAccount), getAccountAddress(toAccount)])
+    .then(function([fromAddress, toAddress]) {
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'sendtoaddress',
-        params: [firstAddress, amount, changeaddress [firstAddress]]
+        params: [toAddress, amount, { changeaddress: fromAddress }]
       }, {
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ function move(toAccount, amount) {
       });
     })
     .then(function(result) {
-      const tx =  result.data.result;
+      const tx = result.data.result;
       return tx;
     });
 }
