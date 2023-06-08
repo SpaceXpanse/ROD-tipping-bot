@@ -95,8 +95,7 @@ function move(fromAccount, toAccount, amount) {
       });
     })
     .then(function(result) {
-      const tx = result.data.result;
-      return tx;
+      return result.data.result;
     });
 }
 
@@ -116,8 +115,7 @@ function sendFrom(fromAccount, toAddress, amount) {
       });
     })
     .then(function(result) {
-      const tx = result.data.result;
-      return tx;
+      return result.data.result;
     });
 }
 
