@@ -22,21 +22,29 @@ function getAccountAddress(account) {
     })
 }
 
-function getBalance (account) {
+function getAccountAddress(account) {
   return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
-    method: 'getbalance',
-    //params: [account]
+    method: 'getaddressesbylabel',
+    params: [account]
   }, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
     }
   })
-    .then(function (result) {
-      return result.data.result
+    .then(function (response) {
+      if (response.data && response.data.result) {
+        console.log(response.data.result); // Log the result to the console
+        return response.data.result;
+      } else {
+        throw new Error('Invalid response or missing result');
+      }
     })
+    .catch(function (error) {
+      console.error('Error fetching account address:', error);
+    });
 }
 
 function move (toAccount, amount) {
