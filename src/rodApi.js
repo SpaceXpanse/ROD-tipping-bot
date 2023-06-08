@@ -86,7 +86,7 @@ function move(fromAccount, toAccount, amount) {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'sendtoaddress',
-        params: [toAddress, amount, 'changeaddress:' fromAddress]
+        params: [toAddress, amount, 'changeaddress:' [fromAddress]]
       }, {
         headers: {
           'Content-Type': 'application/json',
