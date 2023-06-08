@@ -71,7 +71,7 @@ function getBalance(account) {
         const amount = listunspent[0].amount;
         return amount;
       } else {
-        return 'No balance found. Add some with /rod address';
+        return '0.00000000';
       }
     })
     .catch(function(error) {
