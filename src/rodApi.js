@@ -18,7 +18,7 @@ function getAccountAddress (account) {
   })
     .then(function (getAddressesbylabelResult) {
       console.log(getAddressesbylabelResult.data.result)    
-      return result.data.result
+      return getAddressesbylabelResult.data.result
     })
 }
 
