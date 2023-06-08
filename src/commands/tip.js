@@ -36,7 +36,7 @@ async function tip (interaction) {
       return
     }
 
-    await move(fromAccount, toAccount, amount)
+    const tx = await move(fromAccount, toAccount, amount)
     console.log(fromAccount, toAccount, amount, tx)
     interaction.reply(TIP_TEXT + tx)
   } catch (err) {

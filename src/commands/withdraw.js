@@ -40,7 +40,7 @@ async function withdraw (interaction) {
       return
     }
 
-    await sendFrom(fromAccount, toAddress, amount)
+    const tx = await sendFrom(fromAccount, toAddress, amount)
     console.log(fromAccount, toAddress, amount, tx)
     interaction.reply(WITHDRAW_TEXT + tx)
   } catch (err) {
