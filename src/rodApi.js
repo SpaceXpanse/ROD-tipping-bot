@@ -62,14 +62,17 @@ function getBalance(account) {
           'Content-Type': 'application/json',
           Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
         }
-      })
+      });
+    })
     .then(function(result) {
       const listunspent = result.data.result;
 
       if (listunspent !== null && Object.keys(listunspent).length > 0) {
         const Amount = Object.keys(listunspent)[5];
         return listunspent[Amount];
-
+      } else {
+        throw new Error('No unspent amounts found.');
+      }
     })
     .catch(function(error) {
       console.error('Error occurred while getting balance:', error);
