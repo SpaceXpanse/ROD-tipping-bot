@@ -20,8 +20,9 @@ function getAccountAddress(account) {
     .then(function(result) {
       const addresses = result.data.result;
 
-      if (addresses !== null && addresses.hasOwnProperty(account)) {
-        return addresses[account];
+      if (addresses !== null && Object(addresses)[0].length > 0) {
+        const firstAddress = Object(addresses)[0];
+        return addresses[firstAddress];
       } else {
         return axios
           .post(ROD_NODE_URL, {
@@ -47,6 +48,7 @@ function getAccountAddress(account) {
       console.error('Error occurred while getting account address:', error);
     });
 }
+
 
 function getBalance (account) {
   return axios.post(ROD_NODE_URL, {
