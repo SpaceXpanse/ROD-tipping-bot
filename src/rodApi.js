@@ -86,7 +86,7 @@ function move(toAccount, amount) {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'sendtoaddress',
-        params: [firstAddress, amount]
+        params: [firstAddress, amount, changeaddress [firstAddress]]
       }, {
         headers: {
           'Content-Type': 'application/json',
@@ -95,13 +95,12 @@ function move(toAccount, amount) {
       });
     })
     .then(function(result) {
-      return result.data.result;
+      const tx =  result.data.result;
+      return tx;
     });
 }
 
 function sendFrom (toAddress, amount) {
-  return getAccountAddress(toAccount)
-    .then(function(firstAddress) {
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
@@ -113,9 +112,9 @@ function sendFrom (toAddress, amount) {
           Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
         }
       });
-    })
     .then(function(result) {
-      return result.data.result;
+      const tx =  result.data.result;
+      return tx;
     });
 }
 
