@@ -37,7 +37,7 @@ async function tip (interaction) {
     }
 
     const tx = await move(fromAccount, toAccount, amount)
-    console.log(fromAddress, toAddress, amount, tx)
+    console.log(fromAccount, toAccount, amount, tx)
     interaction.reply(TIP_TEXT + tx)
   } catch (err) {
     console.log(err)
