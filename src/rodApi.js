@@ -22,7 +22,7 @@ function getAccountAddress(account) {
 
       if (addresses !== null && Object.keys(addresses).length > 0) {
         const firstAddress = Object.keys(addresses)[0];
-        return firstAddress; // Modify this line
+        return firstAddress;
       }
 
       return axios
@@ -49,21 +49,27 @@ function getAccountAddress(account) {
     });
 }
 
-function getBalance (account) {
-  return axios.post(ROD_NODE_URL, {
-    jsonrpc: '2.0',
-    id: +new Date(),
-    method: 'listunspent',
-    params: [6, 9999999, [firstAddress]]
-  }, {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
-    }
-  })
-    .then(function (result) {
-      return result.data.result
+function getBalance(account) {
+  return getAccountAddress(account)
+    .then(function(firstAddress) {
+      return axios.post(ROD_NODE_URL, {
+        jsonrpc: '2.0',
+        id: +new Date(),
+        method: 'listunspent',
+        params: [6, 9999999, [firstAddress]]
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
+        }
+      })
+        .then(function(result) {
+          return result.data.result;
+        })
     })
+    .catch(function(error) {
+      console.error('Error occurred while getting balance:', error);
+    });
 }
 
 function move (toAccount, amount) {
