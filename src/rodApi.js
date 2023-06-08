@@ -20,9 +20,8 @@ function getAccountAddress(account) {
     .then(function(result) {
       const addresses = result.data.result;
 
-      if (addresses !== null && Object.keys(addresses).length > 0) {
-        const firstAddress = Object.keys(addresses)[0];
-        return addresses[firstAddress];
+      if (addresses !== null && addresses.hasOwnProperty(account)) {
+        return addresses[account];
       } else {
         return axios
           .post(ROD_NODE_URL, {
