@@ -21,7 +21,8 @@ function getAccountAddress(account) {
       const addresses = result.data.result;
 
       if (addresses !== null && Object.keys(addresses).length > 0) {
-        return Object.keys(addresses)[0]; // Modify this line
+        const firstAddress = Object.keys(addresses)[0];
+        return firstAddress; // Modify this line
       }
 
       return axios
@@ -52,8 +53,8 @@ function getBalance (account) {
   return axios.post(ROD_NODE_URL, {
     jsonrpc: '2.0',
     id: +new Date(),
-    method: 'getbalance',
-    //params: [account]
+    method: 'listunspent',
+    params: [6, 9999999, [firstAddress]]
   }, {
     headers: {
       'Content-Type': 'application/json',
