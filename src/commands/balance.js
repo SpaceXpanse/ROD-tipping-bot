@@ -9,13 +9,14 @@ function balance(interaction) {
   getBalance(account)
     .then(function(balance) {
       console.log(balance);
-      if (balance === 0) {
-        interaction.reply('Your ROD balance is 0.00. Use /rod address to add some.');
-      } else if (balance > 0) {
+      if (balance > 0.00000000) {
         interaction.reply(BALANCE_TEXT + balance.toFixed(2) + ' ROD');
       } else {
-        interaction.reply(OOPS_TEXT);
+        interaction.reply('Your ROD balance is 0.00. Use /rod address to add some.');
       }
+    })
+    .catch(function(error) {
+      interaction.reply(OOPS_TEXT);
     });
 }
 
