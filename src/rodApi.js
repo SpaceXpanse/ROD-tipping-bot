@@ -5,7 +5,6 @@ const ROD_NODE_URL = `http://${settings.RPC_HOST}:${settings.RPC_PORT}`
 const BASIC_AUTH_ROD_TOKEN = Buffer.from(`${settings.RPC_USER}:${settings.RPC_PASSWORD}`).toString('base64')
 
 function getAccountAddress(account) {
-  console.log(account)
   return axios
     .post(ROD_NODE_URL, {
       jsonrpc: '2.0',
@@ -19,8 +18,34 @@ function getAccountAddress(account) {
       },
     })
     .then(function(result) {
-      const firstAddress = Object.keys(result.data.result)[0];
-      return result.data.result[firstAddress];
+      const addresses = result.data.result;
+
+      if (addresses !== null && Object.keys(addresses).length > 0) {
+        const firstAddress = Object.keys(addresses)[0];
+        return addresses[firstAddress];
+      } else {
+        return axios
+          .post(ROD_NODE_URL, {
+            jsonrpc: '2.0',
+            id: +new Date(),
+            method: 'getnewaddress',
+            params: [account],
+          }, {
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`,
+            },
+          })
+          .then(function(newAddressResult) {
+            return newAddressResult.data.result;
+          })
+          .catch(function(error) {
+            console.error('Error occurred while getting new address:', error);
+          });
+      }
+    })
+    .catch(function(error) {
+      console.error('Error occurred while getting account address:', error);
     });
 }
 
