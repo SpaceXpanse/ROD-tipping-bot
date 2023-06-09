@@ -94,7 +94,7 @@ function move(fromAccount, toAccount, amount) {
           null,
           `unset`,
           null,
-          '{"change_address": "${fromAddress}"}`
+          '{"change_address": "${fromAddress}"}'
         ]
       }, {
         headers: {
