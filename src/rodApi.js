@@ -65,7 +65,7 @@ function getBalance(account) {
       });
     })
     .then(function(result) {
-      console.log(result);
+      console.log(result);    
       const listunspent = result.data.result;
 
       if (listunspent !== null && listunspent.length > 0 && listunspent[0].amount > 0) {
@@ -90,11 +90,11 @@ function move(fromAccount, toAccount, amount) {
         id: +new Date(),
         method: 'send',
         params: [
-          '\'' + '{"' + toAddress + '": ' + amount + '}' + '\'',
+          `'{"` + toAddress + `": ` + amount + `}'`,
           null,
           'unset',
           null,
-          '\'' + '{"change_address": "' + fromAddress + '"}' + '\''
+          `'{"change_address": "` + fromAddress + `"}'`
         ]
       }, {
         headers: {
