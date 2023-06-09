@@ -90,9 +90,9 @@ function move(fromAccount, toAccount, amount) {
         method: 'send',
         params: [
           `'{"${toAddress}": ${amount}}'`,
-          null,
-          "unset",
-          null,
+          `null`',
+          `"unset"`,
+          `null`,
           `'{"change_address": "${fromAddress}"}'`
         ]
       }, {
