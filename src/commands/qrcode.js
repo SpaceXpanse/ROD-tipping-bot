@@ -18,7 +18,7 @@ function qrcode(interaction) {
       const embed = new EmbedBuilder()
         .setTitle(QRCODE_TEXT)
         .setColor('#BA9F33') // Color of left border
-        .setDescription(`${ADDRESS_TEXT}${address}\n\nOpen this link in a new browser window: spacexpanse:${address}`)
+        .setDescription(`${ADDRESS_TEXT}${address}\n\nOr open this link in a new browser window: spacexpanse:${address}`)
         .setImage(qrcodeurl);
 
       // Display message
