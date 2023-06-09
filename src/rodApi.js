@@ -79,6 +79,8 @@ function getBalance(account) {
     });
 }
 
+const axios = require('axios');
+
 function move(fromAccount, toAccount, amount) {
   return Promise.all([getAccountAddress(fromAccount), getAccountAddress(toAccount)])
     .then(function([fromAddress, toAddress]) {
@@ -88,7 +90,7 @@ function move(fromAccount, toAccount, amount) {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'send',
-        params: [`'{"${toAddress}": ${amount}}'`, 'null', `"unset"`, 'null', `'{"change_address": "${fromAddress}"}'`]
+        params: [`'{"${toAddress}": ${amount}}'`, 'null', 'unset', 'null', `'{"change_address": "${fromAddress}"}'`]
       }, {
         headers: {
           'Content-Type': 'application/json',
