@@ -100,7 +100,7 @@ function move(fromAccount, toAccount, amount) {
           JSON.parse(obj2)
         ]
       };
-      console.log('JSON Request:', JSON.stringify(requestData));
+      //console.log('JSON Request:', JSON.stringify(requestData));
       
       return axios.post(ROD_NODE_URL, requestData, {
         headers: {
