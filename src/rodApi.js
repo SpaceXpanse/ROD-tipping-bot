@@ -30,7 +30,7 @@ function getAccountAddress(account) {
           jsonrpc: '2.0',
           id: +new Date(),
           method: 'getnewaddress',
-          params: [account, bech32],
+          params: [account, 'bech32'],
         }, {
           headers: {
             'Content-Type': 'application/json',
