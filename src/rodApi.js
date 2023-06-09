@@ -88,7 +88,7 @@ function move(fromAccount, toAccount, amount) {
       console.log(toAddress);
       var obj1 = `'{ "${toAddress}": amount }'`
       var obj2 = `'{ "change_address": "${fromAddress}" }'`       
-      return axios.post(ROD_NODE_URL, {
+      var requestData = {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'send',
@@ -99,7 +99,11 @@ function move(fromAccount, toAccount, amount) {
           null,
           JSON.stringify(obj2)
         ]
-      }, {
+      };
+      
+      console.log('JSON Request:', JSON.stringify(requestData));
+      
+      return axios.post(ROD_NODE_URL, requestData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Basic ' + BASIC_AUTH_ROD_TOKEN
