@@ -122,7 +122,7 @@ function sendFrom(fromAccount, toAddress, amount) {
       if (response && response.txid) {
         return response.txid;
       } else {
-        throw new Error('Invalid response or missing txid');
+        console.log('Invalid response or missing txid');
       }
 }
 
