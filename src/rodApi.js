@@ -118,8 +118,12 @@ function sendFrom(fromAccount, toAddress, amount) {
       });
     })
     .then(function(result) {
-      return result.data.result;
-    });
+      var response = result.data;
+      if (response && response.txid) {
+        return response.txid;
+      } else {
+        throw new Error('Invalid response or missing txid');
+      }
 }
 
 module.exports = {
