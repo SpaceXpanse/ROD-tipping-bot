@@ -86,16 +86,18 @@ function move(fromAccount, toAccount, amount) {
     .then(function([fromAddress, toAddress]) {
       console.log(fromAddress);
       console.log(toAddress);
+      var obj1 = '\'{ "${toAddress}": amount }\''
+      var obj2 = '\'{ "change_address": "${fromAddress}" }\'' 
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'send',
         params: [
-          '\'{\"' + toAddress + '\": ' + amount + '}\'',
+          JSON.stringify(obj1),
           null,
           'unset',
           null,
-          '\'{\"change_address": "' + fromAddress + '\"}\''
+          JSON.stringify(obj2)
         ]
       }, {
         headers: {
