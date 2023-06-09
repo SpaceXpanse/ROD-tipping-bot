@@ -65,12 +65,13 @@ function getBalance(account) {
       });
     })
     .then(function(result) {
-      console.log(result);    
+      console.log(result);
       const listunspent = result.data.result;
 
-      if (listunspent !== null && listunspent.length > 0 && listunspent[0].amount > 0) {
-        const amount = listunspent[0].amount;
-        return amount;
+      if (listunspent !== null && listunspent.length > 0) {
+        const amounts = listunspent.map(entry => entry.amount);
+        const sum = amounts.reduce((total, amount) => total + amount, 0);
+        return sum.toFixed(8); // Round the sum to 8 decimal places
       } else {
         return '0.00000000';
       }
