@@ -87,8 +87,8 @@ function move(fromAccount, toAccount, amount) {
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
-        method: 'sendtoaddress',
-        params: [toAddress, amount, 'changeaddress: ${fromAddress}']
+        method: 'send',
+        params: ['{"' + toAddress + '": ' + amount + '}', 'null', '"unset"', 'null', '{"change_address": "' + fromAddress + '"}']
       }, {
         headers: {
           'Content-Type': 'application/json',
