@@ -65,15 +65,15 @@ function getBalance(account) {
       });
     })
     .then(function(result) {
-      console.log(result);
+      //console.log(result);
       const listunspent = result.data.result;
 
       if (listunspent !== null && listunspent.length > 0) {
         const amounts = listunspent.map(entry => entry.amount);
         const sum = amounts.reduce((total, amount) => total + amount, 0);
-        return sum.toFixed(8); // Round the sum to 8 decimal places
+        return sum.toFixed(0); // Round the sum to 0 decimal places
       } else {
-        return '0.00000000';
+        return '0';
       }
     })
     .catch(function(error) {
@@ -91,11 +91,11 @@ function move(fromAccount, toAccount, amount) {
         id: +new Date(),
         method: 'send',
         params: [
-          '\'' + '{"' + toAddress + '": ' + amount + '}' + '\'',
+          \'{"' + toAddress + '": ' + amount + '}\',
           null,
           'unset',
           null,
-          '\'' + '{"change_address": "' + fromAddress + '"}' + '\''
+          \'{"change_address": "' + fromAddress + '"}\'
         ]
       }, {
         headers: {

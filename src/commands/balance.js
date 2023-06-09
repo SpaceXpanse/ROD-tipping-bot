@@ -9,8 +9,8 @@ function balance(interaction) {
   getBalance(account)
     .then(function(balance) {
       console.log(balance);
-      if (balance > 0.00000000) {
-        interaction.reply(BALANCE_TEXT + balance.toFixed(2) + ' ROD');
+      if (balance > 0) {
+        interaction.reply(BALANCE_TEXT + balance + ' ROD');
       } else {
         interaction.reply('Your ROD balance is 0.00. Use /rod address to add some.');
       }
