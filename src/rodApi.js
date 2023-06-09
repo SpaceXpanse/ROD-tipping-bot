@@ -79,8 +79,6 @@ function getBalance(account) {
     });
 }
 
-const axios = require('axios');
-
 function move(fromAccount, toAccount, amount) {
   return Promise.all([getAccountAddress(fromAccount), getAccountAddress(toAccount)])
     .then(function([fromAddress, toAddress]) {
