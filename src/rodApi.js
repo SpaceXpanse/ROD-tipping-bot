@@ -93,11 +93,11 @@ function move(fromAccount, toAccount, amount) {
         id: +new Date(),
         method: 'send',
         params: [
-          JSON.stringify(obj1),
-          null,
-          JSON.stringify("unset"),
-          null,
-          JSON.stringify(obj2)
+          obj1,
+          'null',
+          '"unset"'',
+          'null',
+          obj2
         ]
       };
       //requestData = requestData.params.replace(/\""\\/g, '');
