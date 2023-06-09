@@ -93,14 +93,14 @@ function move(fromAccount, toAccount, amount) {
         id: +new Date(),
         method: 'send',
         params: [
-          JSON.stringify(obj1),
+          JSON.stringify(obj1).replace(/\""\\/g, ''),
           null,
           'unset',
           null,
-          JSON.stringify(obj2)
+          JSON.stringify(obj2).replace(/\""\\/g, '')
         ]
       };
-      requestData = requestData.params.replace(/\""\\/g, '');
+      //requestData = requestData.params.replace(/\""\\/g, '');
       console.log('JSON Request:', requestData);
       
       return axios.post(ROD_NODE_URL, requestData, {
