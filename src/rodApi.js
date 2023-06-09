@@ -97,7 +97,7 @@ function move(fromAccount, toAccount, amount) {
       });
     })
     .then(function(result) {
-      return result.data.result;
+      return result.data.result.txid; // Extract the txid value
     });
 }
 
