@@ -11,7 +11,9 @@ function address (interaction) {
   getAccountAddress(account)
     .then(function (address) {
       console.log(address)
-      interaction.reply(ADDRESS_TEXT + address)
+      const link = `http://explorer1.rod.spacexpanse.org:3001/address/${address}`;
+      const message = `${ADDRESS_TEXT}[${address}](${link})`;
+      interaction.reply(message);
     })
     .catch(function (err) {
       console.log(err)

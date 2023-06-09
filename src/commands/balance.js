@@ -12,7 +12,7 @@ function balance(interaction) {
       if (balance > 0) {
         interaction.reply(BALANCE_TEXT + balance + ' ROD');
       } else {
-        interaction.reply('Your ROD balance is 0.00. Use /rod address to add some.');
+        interaction.reply('Your ROD balance is 0 ROD. Use /rod address to add some.');
       }
     })
     .catch(function(error) {
