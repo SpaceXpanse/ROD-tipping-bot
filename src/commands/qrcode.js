@@ -12,16 +12,12 @@ function qrcode(interaction) {
       // Use goqr.me API to make a beautiful QRCode
       const qrcodeurl = 'https://api.qrserver.com/v1/create-qr-code/?size=300&bgcolor=F4ECDA&color=BA9F33&margin=10&data=' + address;
 
-      // Create a direct link to the specified spacexpanse address
-      const spacexpanseLink = 'spacexpanse:' + address;
-
       // Make an amazing rich embed message with direct image
       const embed = new EmbedBuilder()
         .setTitle(QRCODE_TEXT)
         .setColor('#BA9F33') // Color of left border
-        .setDescription(address)
-        .setImage(qrcodeurl)
-        .setURL(spacexpanseLink); // Set the URL for the embed to the spacexpanse address link
+        .setDescription(`${ADDRESS_TEXT}${address}\n\n[Click here to send SpaceXpanse ROD](spacexpanse:rod1qjc9tygv98qc3vh0j8p5smc6ql23xvey6rpcqgw)`)
+        .setImage(qrcodeurl);
 
       // Display message
       console.log(address);
@@ -32,7 +28,6 @@ function qrcode(interaction) {
       interaction.reply(OOPS_TEXT);
     });
 }
-
 
 // Display
 module.exports = qrcode
