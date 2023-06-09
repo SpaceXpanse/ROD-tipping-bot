@@ -101,19 +101,20 @@ function move(fromAccount, toAccount, amount) {
     });
 }
 
-function sendFrom(fromAccount, toAddress, amount) {
-  return getAccountAddress(fromAccount)
-    .then(function(firstAddress) {
-      console.log(firstAddress)
+function move(fromAccount, toAccount, amount) {
+  return Promise.all([getAccountAddress(fromAccount), getAccountAddress(toAccount)])
+    .then(function([fromAddress, toAddress]) {
+      console.log(fromAddress);
+      console.log(toAddress);
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
-        method: 'sendtoaddress',
-        params: [toAddress, amount, 'changeaddress: ${firstAddress}']
+        method: 'send',
+        params: ['{"' + toAddress + '": ' + amount + '}', 'null', '"unset"', null, '{"change_address": "' + fromAddress + '"}']
       }, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
+          Authorization: 'Basic ' + BASIC_AUTH_ROD_TOKEN
         }
       });
     })
@@ -122,8 +123,9 @@ function sendFrom(fromAccount, toAddress, amount) {
       if (response && response.txid) {
         return response.txid;
       } else {
-        console.log('Invalid response or missing txid');
+        throw new Error('Invalid response or missing txid');
       }
+    });
 }
 
 module.exports = {
