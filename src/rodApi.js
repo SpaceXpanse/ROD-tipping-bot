@@ -119,20 +119,33 @@ function sendFrom(fromAccount, toAddress, amount) {
   return getAccountAddress(fromAccount)
     .then(function(firstAddress) {
       console.log(firstAddress)
-      return axios.post(ROD_NODE_URL, {
+      console.log(toAddress)
+      var obj1 = '{ "' + toAddress + '": ' + amount + ' }';
+      var obj2 = '{ "change_address": "' + firstAddress + '" }';       
+      let requestData = {
         jsonrpc: '2.0',
         id: +new Date(),
-        method: 'sendtoaddress',
-        params: [toAddress, amount, 'changeaddress: ${firstAddress}']
-      }, {
+        method: 'send',
+        params: [
+          JSON.parse(obj1),
+          null,
+          "unset",
+          null,
+          JSON.parse(obj2)
+        ]
+      };
+      //console.log('JSON Request:', JSON.stringify(requestData));
+      
+      return axios.post(ROD_NODE_URL, requestData, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
+          Authorization: 'Basic ' + BASIC_AUTH_ROD_TOKEN
         }
+      })
+      .then(function(result) {
+        console.log(result);
+        return result.data.result.txid;
       });
-    })
-    .then(function(result) {
-      return result.data.result;
     });
 }
 
