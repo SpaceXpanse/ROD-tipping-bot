@@ -86,33 +86,32 @@ function move(fromAccount, toAccount, amount) {
     .then(function([fromAddress, toAddress]) {
       console.log(fromAddress);
       console.log(toAddress);
-      var obj1 = '{ "' + toAddress + '": ' + amount + ' }'
-      var obj2 = '{ "change_address": "' + fromAddress + '" }'       
+      var obj1 = '{ "' + toAddress + '": ' + amount + ' }';
+      var obj2 = '{ "change_address": "' + fromAddress + '" }';       
       let requestData = {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'send',
         params: [
-          obj1,
-          'null',
-          '"unset"',
-          'null',
-          obj2
+          JSON.parse(obj1),
+          null,
+          "unset",
+          null,
+          JSON.parse(obj2)
         ]
       };
-      //requestData = requestData.params.replace(/\""\\/g, '');
-      console.log('JSON Request:', requestData);
+      console.log('JSON Request:', JSON.stringify(requestData));
       
       return axios.post(ROD_NODE_URL, requestData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Basic ' + BASIC_AUTH_ROD_TOKEN
         }
+      })
+      .then(function(result) {
+        console.log(result);
+        return result.data.txid;
       });
-    })
-    .then(function(result) {
-      console.log(result);
-      return result.data.result;
     });
 }
 
