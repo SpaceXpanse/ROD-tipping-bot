@@ -65,6 +65,7 @@ function getBalance(account) {
       });
     })
     .then(function(result) {
+      console.log(result);
       const listunspent = result.data.result;
 
       if (listunspent !== null && listunspent.length > 0 && listunspent[0].amount > 0) {
