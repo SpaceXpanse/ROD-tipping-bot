@@ -2,15 +2,18 @@ const { OOPS_TEXT, QRCODE_TEXT } = require('../messages')
 const { getAccountAddress } = require('../rodApi')
 const { EmbedBuilder } = require('discord.js')
 
-function qrcode (interaction) {
+function qrcode(interaction) {
   // Transform account to recover address
-  const account = interaction.user.id
+  const account = interaction.user.id;
 
   // Call dogecoin node to have the public address
   getAccountAddress(account)
     .then(function (address) {
-    // Use goqr.me API to make a beautiful QRCode
-      const qrcodeurl = 'https://api.qrserver.com/v1/create-qr-code/?size=300&bgcolor=F4ECDA&color=BA9F33&margin=10&data=' + address
+      // Use goqr.me API to make a beautiful QRCode
+      const qrcodeurl = 'https://api.qrserver.com/v1/create-qr-code/?size=300&bgcolor=F4ECDA&color=BA9F33&margin=10&data=' + address;
+
+      // Create a direct link to the specified spacexpanse address
+      const spacexpanseLink = 'spacexpanse:' + address;
 
       // Make an amazing rich embed message with direct image
       const embed = new EmbedBuilder()
@@ -18,16 +21,18 @@ function qrcode (interaction) {
         .setColor('#BA9F33') // Color of left border
         .setDescription(address)
         .setImage(qrcodeurl)
+        .setURL(spacexpanseLink); // Set the URL for the embed to the spacexpanse address link
 
       // Display message
-      console.log(address)
-      interaction.reply({ embeds: [embed] })
+      console.log(address);
+      interaction.reply({ embeds: [embed] });
     })
     .catch(function (err) {
-      console.log(err)
-      interaction.reply(OOPS_TEXT)
-    })
+      console.log(err);
+      interaction.reply(OOPS_TEXT);
+    });
 }
+
 
 // Display
 module.exports = qrcode
