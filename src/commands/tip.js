@@ -38,7 +38,7 @@ async function tip (interaction) {
 
     const tx = await move(fromAccount, toAccount, amount)
     console.log(fromAccount, toAccount, amount, tx)
-    interaction.reply(`<@${fromAccount}> ${TIP_TEXT} ${tx}`)
+    interaction.reply(`<@${fromAccount}> ${TIP_TEXT}${tx}`)
   } catch (err) {
     console.log(err)
     interaction.reply(OOPS_TEXT)
