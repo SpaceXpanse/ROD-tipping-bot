@@ -110,7 +110,7 @@ function move(fromAccount, toAccount, amount) {
       })
       .then(function(result) {
         console.log(result);
-        return result.data.txid;
+        return result.data.result.txid;
       });
     });
 }
