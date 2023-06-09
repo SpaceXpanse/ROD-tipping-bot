@@ -90,16 +90,16 @@ function move(fromAccount, toAccount, amount) {
         id: +new Date(),
         method: 'send',
         params: [
-          `'{"${toAddress}": ${amount}}'`,
+          '{"' + toAddress + '": ' + amount + '}',
           null,
           "unset",
           null,
-          `'{"change_address": "${fromAddress}"}'`
+          '{"change_address": "' + fromAddress + '"}'
         ]
       }, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
+          Authorization: 'Basic ' + BASIC_AUTH_ROD_TOKEN
         }
       });
     })
@@ -108,6 +108,10 @@ function move(fromAccount, toAccount, amount) {
       return result.data.result;
     });
 }
+
+// Example usage
+move("fromAccount", "toAccount", 0.2);
+
 
 function sendFrom(fromAccount, toAddress, amount) {
   return getAccountAddress(fromAccount)
