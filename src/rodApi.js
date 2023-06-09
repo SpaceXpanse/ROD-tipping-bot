@@ -90,11 +90,11 @@ function move(fromAccount, toAccount, amount) {
         id: +new Date(),
         method: 'send',
         params: [
-          '{"' + toAddress + '": ' + amount + '}',
+          '\'{\"' + toAddress + '\": ' + amount + '}\'',
           null,
-          "unset",
+          'unset',
           null,
-          '{"change_address": "' + fromAddress + '"}'
+          '\'{\"change_address\": \"' + fromAddress + '\"}\''
         ]
       }, {
         headers: {
@@ -108,6 +108,10 @@ function move(fromAccount, toAccount, amount) {
       return result.data.result;
     });
 }
+
+// Example usage
+move("fromAccount", "toAccount", 0.2);
+
 
 // Example usage
 move("fromAccount", "toAccount", 0.2);
