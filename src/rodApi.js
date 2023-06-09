@@ -97,34 +97,28 @@ function move(fromAccount, toAccount, amount) {
       });
     })
     .then(function(result) {
-      return result.data.txid;
+      return result.data.txid; // Extract the txid value
     });
 }
 
-function move(fromAccount, toAccount, amount) {
-  return Promise.all([getAccountAddress(fromAccount), getAccountAddress(toAccount)])
-    .then(function([fromAddress, toAddress]) {
-      console.log(fromAddress);
-      console.log(toAddress);
+function sendFrom(fromAccount, toAddress, amount) {
+  return getAccountAddress(fromAccount)
+    .then(function(firstAddress) {
+      console.log(firstAddress)
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
-        method: 'send',
-        params: ['{"' + toAddress + '": ' + amount + '}', 'null', '"unset"', null, '{"change_address": "' + fromAddress + '"}']
+        method: 'sendtoaddress',
+        params: [toAddress, amount, 'changeaddress: ${firstAddress}']
       }, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Basic ' + BASIC_AUTH_ROD_TOKEN
+          Authorization: `Basic ${BASIC_AUTH_ROD_TOKEN}`
         }
       });
     })
     .then(function(result) {
-      var response = result.data;
-      if (response && response.txid) {
-        return response.txid;
-      } else {
-        throw new Error('Invalid response or missing txid');
-      }
+      return result.data.result;
     });
 }
 
