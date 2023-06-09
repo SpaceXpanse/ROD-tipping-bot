@@ -82,13 +82,13 @@ function getBalance(account) {
 function move(fromAccount, toAccount, amount) {
   return Promise.all([getAccountAddress(fromAccount), getAccountAddress(toAccount)])
     .then(function([fromAddress, toAddress]) {
-      console.log(fromAddress)
-      console.log(toAddress)
+      console.log(fromAddress);
+      console.log(toAddress);
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'send',
-        params: ['\'{"$(toAddress)": $(amount)}\'', 'null', '"unset"', 'null', '\'{"change_address": "$(fromAddress)"}\'']
+        params: [`'{"${toAddress}": ${amount}}'`, 'null', '"unset"', 'null', `'{"change_address": "${fromAddress}"}'`]
       }, {
         headers: {
           'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ function move(fromAccount, toAccount, amount) {
       });
     })
     .then(function(result) {
-      console.log(result)
+      console.log(result);
       return result.data.result;
     });
 }
