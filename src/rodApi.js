@@ -99,7 +99,8 @@ function move(fromAccount, toAccount, amount) {
     .then(function(result) {
       var response = result.data.result;
       if (response && response.txid) {
-        return response.txid;
+        console.log(response)
+        return response;
       } else {
         console.log('Invalid response or missing txid');
       }
