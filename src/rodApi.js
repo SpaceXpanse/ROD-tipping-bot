@@ -95,7 +95,7 @@ function move(fromAccount, toAccount, amount) {
         params: [
           obj1,
           'null',
-          '"unset"'',
+          '"unset"',
           'null',
           obj2
         ]
