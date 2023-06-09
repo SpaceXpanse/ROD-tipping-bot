@@ -2,6 +2,8 @@ const { OOPS_TEXT, QRCODE_TEXT } = require('../messages')
 const { getAccountAddress } = require('../rodApi')
 const { EmbedBuilder } = require('discord.js')
 
+const ADDRESS_TEXT = 'You can send ROD to this address: ';
+
 function qrcode(interaction) {
   // Transform account to recover address
   const account = interaction.user.id;
@@ -16,7 +18,7 @@ function qrcode(interaction) {
       const embed = new EmbedBuilder()
         .setTitle(QRCODE_TEXT)
         .setColor('#BA9F33') // Color of left border
-        .setDescription(`${ADDRESS_TEXT}${address}\n\n[Click here to send SpaceXpanse ROD](spacexpanse:rod1qjc9tygv98qc3vh0j8p5smc6ql23xvey6rpcqgw)`)
+        .setDescription(`${ADDRESS_TEXT}${address}\n\n[Click here](spacexpanse:rod1qjc9tygv98qc3vh0j8p5smc6ql23xvey6rpcqgw)`)
         .setImage(qrcodeurl);
 
       // Display message
