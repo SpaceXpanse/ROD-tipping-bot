@@ -85,18 +85,16 @@ function move(fromAccount, toAccount, amount) {
     .then(function([fromAddress, toAddress]) {
       console.log(fromAddress);
       console.log(toAddress);
-      var toAddressAmmountvar = '\'\{"${toAddress}": ${amount}\}\'';
-      var fromAddressvar = '\'\{"changeaddress": "${fromAddress}"\}\'';
       return axios.post(ROD_NODE_URL, {
         jsonrpc: '2.0',
         id: +new Date(),
         method: 'send',
         params: [
-          toAddressAmmountvar,
+          '\'' + '{"' + toAddress + '": ' + amount + '}' + '\'',
           null,
           'unset',
           null,
-          fromAddressvar
+          '\'' + '{"change_address": "' + fromAddress + '"}' + '\''
         ]
       }, {
         headers: {
@@ -110,15 +108,6 @@ function move(fromAccount, toAccount, amount) {
       return result.data.result;
     });
 }
-
-
-// Example usage
-move("fromAccount", "toAccount", 0.2);
-
-
-// Example usage
-move("fromAccount", "toAccount", 0.2);
-
 
 function sendFrom(fromAccount, toAddress, amount) {
   return getAccountAddress(fromAccount)
