@@ -91,11 +91,11 @@ function move(fromAccount, toAccount, amount) {
         id: +new Date(),
         method: 'send',
         params: [
-          \'{"' + toAddress + '": ' + amount + '}\',
+          '\'{\"' + toAddress + '\": ' + amount + '}\'',
           null,
           'unset',
           null,
-          \'{"change_address": "' + fromAddress + '"}\'
+          '\'{\"change_address": "' + fromAddress + '\"}\''
         ]
       }, {
         headers: {
